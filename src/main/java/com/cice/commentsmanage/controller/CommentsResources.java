@@ -23,7 +23,7 @@ public class CommentsResources {
         return response;
     }
 
-    @RequestMapping(path = "commentsupdate", method = RequestMethod.PATCH)
+    @RequestMapping(path = "/commentsupdate", method = RequestMethod.PATCH)
     public ResponseEntity<CommentsDTO> updateComment(@PathVariable(name = "id")Long id,@RequestBody CommentsDTO commentsDTO){
         ResponseEntity<CommentsDTO> response = null;
         CommentsDTO commentsDTO1 = commentsService.updateComment(id, commentsDTO);
