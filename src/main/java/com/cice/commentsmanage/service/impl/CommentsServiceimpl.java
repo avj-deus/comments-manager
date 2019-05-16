@@ -63,7 +63,10 @@ public class CommentsServiceimpl implements CommentsService {
 
     @Override
     public CommentsDTO getCommentsByNewsTitle(String title) {
-        return null;
+        CommentsDTO responseDTO = null;
+        List<CommentsEntity> entityList = commentsRepository.findAll();
+        //responseDTO = convert.convertEntityToDTO(entityList.);
+        return responseDTO;
     }
 
     @Override
@@ -74,7 +77,7 @@ public class CommentsServiceimpl implements CommentsService {
                 .stream()
                 .map(entity -> convert.convertEntityToDTO(entity))
                 .collect(Collectors.toList());
-        return null;
+        return listcomments;
     }
 
     @Override
