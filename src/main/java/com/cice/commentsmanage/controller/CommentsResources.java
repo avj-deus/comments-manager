@@ -51,6 +51,13 @@ public class CommentsResources {
         return ResponseEntity.accepted().build();
     }
 
+    @RequestMapping(path = "/comments", method = RequestMethod.GET)
+    public ResponseEntity<CommentsDTO> getCommentsBytitle(@RequestBody String title){
+        ResponseEntity<CommentsDTO> response =  null;
+
+        return response;
+    }
+
 
 
 }
