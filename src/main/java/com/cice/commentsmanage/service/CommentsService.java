@@ -1,8 +1,10 @@
 package com.cice.commentsmanage.service;
 
 import com.cice.commentsmanage.controller.dto.CommentsDTO;
+import com.cice.commentsmanage.repository.entity.CommentsEntity;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CommentsService {
 
@@ -11,7 +13,7 @@ public interface CommentsService {
      * @param commentsDTO
      * @return
      */
-    CommentsDTO createComment(CommentsDTO commentsDTO);
+    CommentsEntity createComment(CommentsDTO commentsDTO);
 
     /**
      * method that allow us update any comment
@@ -25,14 +27,7 @@ public interface CommentsService {
      * @param id
      * @return
      */
-    CommentsDTO getCommentsById(Long id);
-
-    /**
-     * method that allow us see all comments grace to a title
-     * @param title
-     * @return
-     */
-    CommentsDTO getCommentsByNewsTitle(String title);
+    Optional<CommentsEntity> getCommentsById(Long id);
 
     /**
      * method that allow us see all comments
@@ -49,9 +44,9 @@ public interface CommentsService {
 
     /**
      * method that allow us delete all comment of a news
-     * @param title
+     * @return
      */
-    void deleteCommentByNewsTitle(String title);
+    void deleteAllComment();
 
 
 

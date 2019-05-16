@@ -1,12 +1,14 @@
 package com.cice.commentsmanage.controller;
 
 import com.cice.commentsmanage.controller.dto.CommentsDTO;
+import com.cice.commentsmanage.repository.entity.CommentsEntity;
 import com.cice.commentsmanage.service.CommentsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class CommentsResources {
@@ -15,10 +17,9 @@ public class CommentsResources {
     CommentsService commentsService;
 
     @RequestMapping(path = "/comments", method = RequestMethod.POST)
-    public ResponseEntity<CommentsDTO> createComments(@RequestBody CommentsDTO commentsDTO){
-        ResponseEntity<CommentsDTO> response = null;
-        CommentsDTO commentsDTO1 = commentsService.createComment(commentsDTO);
-        response = ResponseEntity.ok(commentsDTO1);
+    public CommentsEntity createComments(@RequestBody CommentsDTO commentsDTO){
+        CommentsEntity response = null;
+        response = commentsService.createComment(commentsDTO);
 
         return response;
     }
@@ -31,10 +32,9 @@ public class CommentsResources {
         return response;
     }
     @RequestMapping(path = "/comments", method = RequestMethod.GET)
-    public ResponseEntity<CommentsDTO> getCommentsById(@PathVariable(name = "id")Long id){
-        ResponseEntity<CommentsDTO> response = null;
-        CommentsDTO commentsDTO = commentsService.getCommentsById(id);
-        response = ResponseEntity.ok(commentsDTO);
+    public Optional<CommentsEntity> getCommentsById(@PathVariable(name = "id")Long id){
+        Optional<CommentsEntity> response = commentsService.getCommentsById(id);
+        if(!response.isPresent());
         return response;
     }
     @RequestMapping(path = "comments", method = RequestMethod.GET)
@@ -51,11 +51,9 @@ public class CommentsResources {
         return ResponseEntity.accepted().build();
     }
 
-    @RequestMapping(path = "/comments", method = RequestMethod.GET)
-    public ResponseEntity<CommentsDTO> getCommentsBytitle(@RequestBody String title){
-        ResponseEntity<CommentsDTO> response =  null;
-
-        return response;
+    @RequestMapping(path = "/comments", method = RequestMethod.DELETE)
+    public void deletaAllComments(){
+        commentsService.deleteAllComment();
     }
 
 

@@ -24,10 +24,9 @@ public class CommentsServiceimpl implements CommentsService {
 
 
     @Override
-    public CommentsDTO createComment(CommentsDTO commentsDTO) {
-        CommentsDTO responseDTO = null;
-        CommentsEntity commentsEntity = commentsRepository.save(convert.convertDTOToEntity(commentsDTO));
-        responseDTO = convert.convertEntityToDTO(commentsEntity);
+    public CommentsEntity createComment(CommentsDTO commentsDTO) {
+        CommentsEntity responseDTO = null;
+        responseDTO = commentsRepository.save(convert.convertDTOToEntity(commentsDTO));
         return responseDTO;
     }
 
@@ -54,19 +53,10 @@ public class CommentsServiceimpl implements CommentsService {
     }
 
     @Override
-    public CommentsDTO getCommentsById(Long id) {
-        CommentsDTO responseDTO = null;
-        Optional<CommentsEntity> commentsEntity = commentsRepository.findById(id);
-        responseDTO = convert.convertEntityToDTO(commentsEntity.get());
-        return responseDTO;
-    }
-
-    @Override
-    public CommentsDTO getCommentsByNewsTitle(String title) {
-        CommentsDTO responseDTO = null;
-        List<CommentsEntity> entityList = commentsRepository.findAll();
-        //responseDTO = convert.convertEntityToDTO(entityList.);
-        return responseDTO;
+    public Optional<CommentsEntity> getCommentsById(Long id) {
+        Optional<CommentsEntity> responseEntity = null;
+        responseEntity = commentsRepository.findById(id);
+        return responseEntity;
     }
 
     @Override
@@ -88,8 +78,7 @@ public class CommentsServiceimpl implements CommentsService {
     }
 
     @Override
-    public void deleteCommentByNewsTitle(String title) {
-        CommentsDTO responseDTO = null;
+    public void deleteAllComment() {
         commentsRepository.deleteAll();
 
     }

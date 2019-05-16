@@ -21,5 +21,7 @@ public class CommentsEntity {
     @Id
     @GeneratedValue
     private Long id;
-    private String newsTitle, comments, date;
+    private String newsTitle;
+    private String comments;
+    private String date;
 }
