@@ -18,14 +18,21 @@ public interface CommentsService {
      * @param commentsDTO
      * @return
      */
-    CommentsDTO updateComment(CommentsDTO commentsDTO);
+    CommentsDTO updateComment(Long id, CommentsDTO commentsDTO);
 
     /**
-     * method that allow us see any comment grace to a title
+     * method that allow us see any comment grace to a id
+     * @param id
+     * @return
+     */
+    CommentsDTO getCommentsById(Long id);
+
+    /**
+     * method that allow us see all comments grace to a title
      * @param title
      * @return
      */
-    CommentsDTO getCommentsByTitle(String title);
+    CommentsDTO getCommentsByNewsTitle(String title);
 
     /**
      * method that allow us see all comments
